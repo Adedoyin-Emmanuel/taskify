@@ -1,2 +1,3 @@
-*.cshtml linguist-vendored
-*.css linguist-vendored
+*.cs diff=csharp
+*.cshtml diff=csharp
+*.css diff=css
