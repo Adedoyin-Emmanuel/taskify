@@ -1,6 +1,2 @@
-
-*.cs       text diff=csharp
-*.cshtml   text diff=csharp
-*.csx      text diff=csharp
-*.sln      text eol=crlf
-*.csproj   text eol=crlf
+*.cshtml linguist-vendored
+*.css linguist-vendored
