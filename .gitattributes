@@ -1,4 +1,4 @@
 
 
-*.cshtml linguist-language=TypeScript
+*.cshtml linguist-language=csharp
 *.css linguist-vendored
