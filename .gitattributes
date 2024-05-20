@@ -1,3 +1,3 @@
-*.cs linguist-detectable=true
-*.html linguist-detectable=false
-*.css linguist-detectable=false
+*.cs diff=csharp
+*.html diff=html
+*.css diff=css
