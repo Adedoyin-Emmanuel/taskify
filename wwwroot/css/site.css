@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: CustomFontBold;
+  src: url("../fonts/font-semibold.woff");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: CustomFontLight;
+  src: url("../fonts/font-light.woff");
+  font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: CustomFontBold;
+}
+
+body {
+  font-family: CustomFontLight;
+}
