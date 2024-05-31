@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Signup";
+}
+
+<section class="w-screen h-screen flex items-center justify-center">
+
+<form action="" class="w-11/12 md:w-1/2 xl:w-1/4">
+
+      <h1 class="text-3xl font-bold">Signup </h1>
+      <span>Create your taskify account</span>
+        <br/>
+        <div class="my-4">
+            <label for="fullname" class="block my-2">Fullname</label>
+            <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="text" name="fullname" placeholder="Enter your email address"/>
+        </div>
+
+          <div class="my-4">
+            <label for="email" class="block my-2">Email</label>
+            <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="email" name="email" placeholder="Shhh 🤫 it's a secret"/>
+        </div>
+
+
+        <div class="my-4">
+            <label for="password" class="block my-2">Password</label>
+            <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="email" name="password" placeholder="Enter your password"/>
+        </div>
+        <div class="my-5">
+            <button class="btn bg-[#181717] hover:bg-black text-white w-full h-[3.7rem]">Signup</button>
+        </div>
+
+
+        <div>
+            <span>Have an account?</span>
+            <a class="underline" href="/auth/login">Login</a>
+        </div>
+</form>
+
+ 
+</section>
