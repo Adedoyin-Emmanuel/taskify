@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using taskify.Models;
 
 
-
 namespace taskify.Controllers
 {
 
