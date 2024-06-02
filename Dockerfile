@@ -1,7 +1,12 @@
-FROM bitnami/mysql:latest
+FROM mysql-db
 
-ENV POSTGRES_USER=admin
-ENV POSTGRES_PASSWORD=admin123
-ENV POSTGRES_DB=mydb
+ENV MYSQL_USER=admin
+ENV MYSQL_PASSWORD=admin@taskify
+ENV MYSQL_DATABASE=taskify-db
 
-EXPOSE 5432
+EXPOSE 3306
+
+
+
+
+# The mysql-db is a bitnami/mysql:latest image that I've locally. You should change it to  bitnami/mysql:latest

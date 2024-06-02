@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: mysql-db
+    container_name: zarpay-postgres
+    environment:
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin@taskify
+      - MYSQL_DATABASE=taskify-db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql/data
+
+volumes:
+  mysql_data:
+    driver: local
