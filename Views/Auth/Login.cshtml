@@ -2,9 +2,13 @@
     ViewData["Title"] = "Login";
 }
 
+
+@model taskify.Models.LoginViewModel
+
+
 <section class="w-screen h-screen flex items-center justify-center">
 
-<form action="" class="w-11/12 md:w-1/2 xl:w-1/4">
+<form action="/auth/login" method="OST" class="w-11/12 md:w-1/2 xl:w-1/4">
 
       <h1 class="text-3xl font-bold">Login </h1>
       <span>Login to your taskify account</span>
@@ -31,3 +35,9 @@
 
  
 </section>
+
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+}
