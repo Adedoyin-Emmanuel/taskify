@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  postgres:
+  mysql:
     image: mysql-db
-    container_name: zarpay-postgres
+    container_name: taskify-mysql
     environment:
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=admin@taskify
