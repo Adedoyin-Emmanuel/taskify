@@ -29,6 +29,16 @@
             <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="password"  asp-for="Password" placeholder="Shhh 🤫 it's a secret"/>
             <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
         </div>
+
+
+         <div class="my-4">
+            <label asp-for="ConfirmPassword" class="block my-2">Confirm Password</label>
+            <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="password"  asp-for="ConfirmPassword" placeholder="Confirm your password"/>
+            <span asp-validation-for="ConfirmPassword" class="text-red-500 text-sm"></span>
+        </div>
+
+
+
         <div class="my-5">
             <button class="btn bg-[#181717] hover:bg-black text-white w-full h-[3.7rem]">Signup</button>
         </div>

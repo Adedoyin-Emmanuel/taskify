@@ -12,7 +12,7 @@ namespace taskify.Models
         [Required(ErrorMessage = "Please enter your email")]
         public required string Email { get; set; }
 
-
+        [DataType(DataType.Password)]
         [Required(ErrorMessage = "Please enter your password")]
         public required string Password { get; set; }
     }

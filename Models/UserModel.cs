@@ -1,11 +1,11 @@
+using Microsoft.AspNetCore.Identity;
+
+
 namespace taskify.Models;
 
-public class Auth
+public class User : IdentityUser<Guid>
 {
 
-    public required Guid Id { get; set; }
     public required string Fullname { get; set; }
-    public required string Email { get; set; }
-    public required string Password { get; set; }
 
 }

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using taskify.Models;
 
@@ -7,16 +8,11 @@ using taskify.Models;
 namespace taskify.Controllers
 {
 
-    public class AuthController : Controller
+    public class AuthController(ILogger<AuthController> logger, UserManager<User> userManager, SignInManager<User> signInManager) : Controller
     {
-        private readonly ILogger<AuthController> _logger;
-
-
-
-        public AuthController(ILogger<AuthController> logger)
-        {
-            _logger = logger;
-        }
+        private readonly ILogger<AuthController> _logger = logger;
+        private readonly UserManager<User> _userManager = userManager;
+        private readonly SignInManager<User> _signInManager = signInManager;
 
         [HttpGet]
         public IActionResult Index()
@@ -63,8 +59,6 @@ namespace taskify.Controllers
             {
                 return View("Signup", model);
             }
-
-
 
 
             Console.WriteLine($"{model.Fullname}, {model.Email}, {model.Password}");
