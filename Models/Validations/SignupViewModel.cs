@@ -10,7 +10,7 @@ namespace taskify.Models
         public required string Fullname { get; set; }
 
 
-        [Required(ErrorMessage = "Please enter your email")]
+        [Required(ErrorMessage = "Please enter your email"), EmailAddress]
         public required string Email { get; set; }
 
 

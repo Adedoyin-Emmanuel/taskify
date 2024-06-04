@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using taskify.Models;
 
 
+
 namespace taskify.Controllers
 {
 
@@ -31,6 +32,20 @@ namespace taskify.Controllers
         }
 
 
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Login", model);
+            }
+
+            Console.WriteLine($"{model.Email}, {model.Password}");
+            return View("Login");
+
+        }
+
+
         [HttpGet]
         public IActionResult Signup()
         {
@@ -49,12 +64,6 @@ namespace taskify.Controllers
                 return View("Signup", model);
             }
 
-            Console.WriteLine(HttpContext.Request.Form["Fullname"]);
-            Console.WriteLine(HttpContext.Request.Form["Email"]);
-            Console.WriteLine(HttpContext.Request.Form["Password"]);
-
-
-            Console.WriteLine("This is seperate ---------");
 
 
 

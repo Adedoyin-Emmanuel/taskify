@@ -8,20 +8,22 @@
 
 <section class="w-screen h-screen flex items-center justify-center">
 
-<form action="/auth/login" method="OST" class="w-11/12 md:w-1/2 xl:w-1/4">
+<form action="/auth/login" method="POST" class="w-11/12 md:w-1/2 xl:w-1/4">
 
       <h1 class="text-3xl font-bold">Login </h1>
       <span>Login to your taskify account</span>
         <br/>
         <div class="my-4">
-            <label for="email" class="block my-2">Email</label>
-            <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="email" name="email" placeholder="Enter your email address"/>
+            <label asp-for="Email" class="block my-2">Email</label>
+            <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="email" asp-for="Email" placeholder="Enter your email address"/>
+            <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
         </div>
 
         <div class="my-4">
-            <label for="password" class="block my-2">Password</label>
-            <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="password" name="password" placeholder="Shhh 🤫 it's a secret"/>
-        </div>
+            <label asp-for="Password" class="block my-2">Password</label>
+            <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="password" asp-for="Password" placeholder="Shhh 🤫 it's a secret"/>
+            <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
+       </div>
         <div class="my-5">
             <button class="btn bg-[#181717] hover:bg-black text-white w-full h-[3.7rem]">Login</button>
         </div>
