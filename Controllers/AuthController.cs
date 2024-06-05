@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using taskify.Models;
@@ -17,7 +16,14 @@ namespace taskify.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View("Login");
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Todo");
+            }
+            else
+            {
+                return View("Login");
+            }
         }
 
 
@@ -39,15 +45,24 @@ namespace taskify.Controllers
                 return View("Login", model);
             }
 
-
-            model.Message = "Login successful";
-            model.State = "success";
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
 
 
-            Console.WriteLine($"{model.Email} {model.Password} {model.RememberMe}");
+            if (result.Succeeded)
+            {
+                model.Message = "Login successful";
+                model.State = "success";
 
+                return RedirectToAction("Index", "Todo");
+            }
+            else
+            {
 
-            return View("Login", model);
+                model.Message = "Login failed, please try again";
+                model.State = "error";
+
+                return View("Login", model);
+            }
 
         }
 

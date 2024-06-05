@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using taskify.Models;
 
@@ -13,9 +14,13 @@ public class HomeController : Controller
         _logger = logger;
     }
 
+
+
+    [Authorize]
+    [HttpGet]
     public IActionResult Index()
     {
-        return Redirect("/auth");
+        return Redirect("/todo");
     }
 
     public IActionResult Privacy()
