@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using taskify.Models;
+using System.Threading.Tasks;
 
 
 namespace taskify.Controllers
@@ -57,10 +58,8 @@ namespace taskify.Controllers
 
 
         [HttpPost]
-        public IActionResult Signup(SignupViewModel model)
+        public async Task<IActionResult> Signup(SignupViewModel model)
         {
-
-
 
             if (!ModelState.IsValid)
             {
@@ -72,8 +71,19 @@ namespace taskify.Controllers
             }
 
 
-            model.Message = "Signup successful.";
-            model.State = "success";
+            var user = new User { UserName = model.Email, Email = model.Email, Fullname = model.Fullname, };
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(user, isPersistent: true);
+                model.State = "success";
+                model.Message = "Signup successful.";
+
+                return RedirectToAction("Index", "Home");
+            }
+
+
 
 
             Console.WriteLine($"{model.Fullname}, {model.Email}, {model.Password}");
