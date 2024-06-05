@@ -2,11 +2,12 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using taskify.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace taskify.Controllers
 {
 
-    class TodoController(ILogger<TodoController> logger, UserManager<User> userManager, SignInManager<User> signInManager) : Controller
+    public class TodoController(ILogger<TodoController> logger, UserManager<User> userManager, SignInManager<User> signInManager) : Controller
     {
 
         private readonly ILogger<TodoController> _logger = logger;
@@ -16,10 +17,12 @@ namespace taskify.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View();
         }
+
 
 
 

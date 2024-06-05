@@ -24,6 +24,14 @@ builder.Services.AddIdentity<User, IdentityRole<Guid>>()
 .AddDefaultTokenProviders();
 
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Auth/Login";
+    options.LogoutPath = "/Auth/Logout";
+});
+
+
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
