@@ -2,7 +2,6 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using taskify.Models;
-using System.Threading.Tasks;
 
 
 namespace taskify.Controllers
@@ -30,7 +29,7 @@ namespace taskify.Controllers
 
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel model)
+        public async  Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
