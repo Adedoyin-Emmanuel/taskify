@@ -44,7 +44,6 @@ namespace taskify.Controllers
             model.State = "success";
 
 
-            Console.WriteLine($"{model.Email}, {model.Password}");
             return View("Login", model);
 
         }
