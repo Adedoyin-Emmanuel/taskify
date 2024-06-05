@@ -1,24 +1,39 @@
+@* From Notyf Toast library *@
+@{
+    string state = "";
+    string message = "";
 
- @* From Notyf Toast library *@
- @if (Model != null && !string.IsNullOrEmpty(Model.Message) && !string.IsNullOrEmpty(Model.State)){
-   <script>
+    if (Model != null && !string.IsNullOrEmpty(Model.Message) && !string.IsNullOrEmpty(Model.State))
+    {
+        state = Model.State;
+        message = Model.Message;
+    }
+    else if (TempData.ContainsKey("State") && TempData.ContainsKey("Message"))
+    {
+        state = TempData["State"].ToString();
+        message = TempData["Message"].ToString();
+    }
+}
+
+@if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(message))
+{
+    <script>
         const notyf = new Notyf();
-        const state =  '@Model.State';
-        const message = '@Model.Message';
+        const state = '@state';
+        const message = '@message';
 
-       if(state == "success"){
-         notyf.success({
-            message,
-            dismissible: true,
-            duration: 3000,
-         })
-       }else{
-         notyf.error({
-            message,
-            dismissible: true,
-            duration: 3000,
-         })
-       }
-
-  </script>
- }
+        if (state == "success") {
+            notyf.success({
+                message,
+                dismissible: true,
+                duration: 3000,
+            });
+        } else {
+            notyf.error({
+                message,
+                dismissible: true,
+                duration: 3000,
+            });
+        }
+    </script>
+}

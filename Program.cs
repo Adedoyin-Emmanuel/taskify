@@ -20,9 +20,14 @@ builder.Services.AddDbContext<AppContext>(options =>
     options.UseMySql(connectionString, serverVersion);
 });
 
+builder.Services.AddSingleton<UseAuthenticationMiddleware>();
+
+
 builder.Services.AddIdentity<User, IdentityRole<Guid>>()
 .AddEntityFrameworkStores<AppContext>()
 .AddDefaultTokenProviders();
+
+
 
 
 builder.Services.ConfigureApplicationCookie(options =>
@@ -33,7 +38,11 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 
 
+
+
 var app = builder.Build();
+
+
 
 if (!app.Environment.IsDevelopment())
 {
@@ -41,13 +50,16 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseMiddleware<UseAuthentication>();
+
+app.UseMiddleware<UseAuthenticationMiddleware>();
+
 
 app.MapControllerRoute(
     name: "default",

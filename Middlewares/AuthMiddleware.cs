@@ -1,29 +1,25 @@
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+
+
+
 namespace taskify.Middlewares
 {
-
-
-
-    public class UseAuthentication(RequestDelegate next)
+    public class UseAuthenticationMiddleware : IMiddleware
     {
-        private readonly RequestDelegate _next = next;
-
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            var user = context.User;
-            if (user?.Identity?.IsAuthenticated == true && context?.Request?.Path != null && context.Request.Path.Value?.Contains("auth") == true)
+
+
+            if (context.User.Identity.IsAuthenticated &&
+                (context.Request.Path.Equals("/Auth/Login") || context.Request.Path.Equals("/Auth/Signup")))
             {
-                context.Response.Redirect("/todo");
+                context.Response.Redirect("/Todo");
                 return;
             }
 
-            if (context != null)
-            {
-
-                await _next(context);
-
-            }
-
+            await next(context);
         }
-
     }
 }

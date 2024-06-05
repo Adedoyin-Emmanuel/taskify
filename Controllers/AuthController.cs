@@ -16,14 +16,7 @@ namespace taskify.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Todo");
-            }
-            else
-            {
-                return View("Login");
-            }
+            return View("Login");
         }
 
 
@@ -50,15 +43,15 @@ namespace taskify.Controllers
 
             if (result.Succeeded)
             {
-                model.Message = "Login successful";
-                model.State = "success";
+                TempData["Message"] = "Login successful";
+                TempData["State"] = "success";
 
                 return RedirectToAction("Index", "Todo");
             }
             else
             {
 
-                model.Message = "Login failed, please try again";
+                model.Message = "Login failed";
                 model.State = "error";
 
                 return View("Login", model);
@@ -77,6 +70,7 @@ namespace taskify.Controllers
         [HttpPost]
         public async Task<IActionResult> Signup(SignupViewModel model)
         {
+            var lastError = "";
 
             if (!ModelState.IsValid)
             {
@@ -103,11 +97,13 @@ namespace taskify.Controllers
             {
                 foreach (var error in result.Errors)
                 {
+                    Console.WriteLine(error.Description);
                     ModelState.AddModelError(string.Empty, error.Description);
+                    lastError = error.Description;
                 }
 
                 model.State = "error";
-                model.Message = "There was an error with your signup.";
+                model.Message = lastError.Length > 0 ? lastError : "There was an error with your signup.";
 
                 return View("Signup", model);
             }
