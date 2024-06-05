@@ -1,0 +1,24 @@
+
+ @* From Notyf Toast library *@
+ @if (Model != null && !string.IsNullOrEmpty(Model.Message) && !string.IsNullOrEmpty(Model.State)){
+   <script>
+        const notyf = new Notyf();
+        const state =  '@Model.State';
+        const message = '@Model.Message';
+
+       if(state == "success"){
+         notyf.success({
+            message,
+            dismissible: true,
+            duration: 3000,
+         })
+       }else{
+         notyf.error({
+            message,
+            dismissible: true,
+            duration: 3000,
+         })
+       }
+
+  </script>
+ }

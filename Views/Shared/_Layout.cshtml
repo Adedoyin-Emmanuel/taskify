@@ -7,11 +7,19 @@
     <link rel="stylesheet" href="~/css/output.css" />
     <link rel="stylesheet" href="~/css/site.css"/>
     <link rel="shortcut icon" href="/taskify-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="~/css/notyf.css"/>
+    <script src="~/js/notyf.min.js"></script>
+
+     <script>
+
+  </script>
 </head>
 <body class="scroll-smooth">
         <partial name="_Navbar"/>
+        <partial name="_Toast"/>
   
     <div class="w-screen h-screen">
+        
         <main role="main" class="w-full">
             @RenderBody()
         </main>
@@ -20,6 +28,9 @@
     <partial name="_Footer"/>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+   
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -43,6 +43,7 @@ namespace taskify.Controllers
             model.Message = "Login successful";
             model.State = "success";
 
+
             Console.WriteLine($"{model.Email}, {model.Password}");
             return View("Login", model);
 
@@ -59,8 +60,7 @@ namespace taskify.Controllers
         [HttpPost]
         public IActionResult Signup(SignupViewModel model)
         {
-            model.Message = "Signup successful.";
-            model.State = "success";
+
 
 
             if (!ModelState.IsValid)
@@ -73,7 +73,8 @@ namespace taskify.Controllers
             }
 
 
-
+            model.Message = "Signup successful.";
+            model.State = "success";
 
 
             Console.WriteLine($"{model.Fullname}, {model.Email}, {model.Password}");

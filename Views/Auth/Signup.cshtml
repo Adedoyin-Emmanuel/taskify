@@ -7,6 +7,7 @@
 @model taskify.Models.SignupViewModel
 
 
+
 <section class="w-screen h-screen flex items-center justify-center">
 
 <form as-action="/auth/signup" method="POST" class="w-11/12 md:w-1/2 xl:w-1/4">
@@ -14,12 +15,6 @@
       <h1 class="text-3xl font-bold">Signup </h1>
       <span>Create your taskify account</span>
         <br/>
-        <br/>
-        
-        @if (Model != null && !string.IsNullOrEmpty(Model.Message))
-        {
-            <partial name="_MessageBanner" model="Tuple.Create(Model.Message, Model.State)" />
-        }
         
         <div class="my-4">
             <label asp-for="Fullname" class="block my-2">Fullname</label>
