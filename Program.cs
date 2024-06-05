@@ -2,16 +2,21 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using taskify.Models;
+using dotenv.net;
 
 var builder = WebApplication.CreateBuilder(args);
 
+DotEnv.Load();
+
 builder.Services.AddControllersWithViews();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 36));
+
 
 builder.Services.AddDbContext<AppContext>(options =>
 {
-    options.UseSqlServer(connectionString);
+    options.UseMySql(connectionString, serverVersion);
 });
 
 builder.Services.AddIdentity<User, IdentityRole<Guid>>()

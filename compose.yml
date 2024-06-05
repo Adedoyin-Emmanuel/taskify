@@ -2,16 +2,17 @@ version: '3.8'
 
 services:
   mysql:
-    image: mysql-db
+    image: bitnami/mysql:latest
     container_name: taskify-mysql
     environment:
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=admin@taskify
       - MYSQL_DATABASE=taskify-db
+      - MYSQL_ROOT_PASSWORD=admin@taskify
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql/data
+      - mysql_data:/var/lib/mysql
 
 volumes:
   mysql_data:
