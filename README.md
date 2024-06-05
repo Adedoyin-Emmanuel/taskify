@@ -16,6 +16,7 @@ Taskify is a simple task app built with **ASP.NET**. I'm building this app to pr
 - ASP.NET Framework
 - C#
 - Notyf (Notification Library)
-- JavaScript and Jquery
+- JavaScript, Jquery and Jquery Validation
 - Tailwindcss
+- Daisy UI (Tailwindcss Components)
 - Lucide (Icon Library)
