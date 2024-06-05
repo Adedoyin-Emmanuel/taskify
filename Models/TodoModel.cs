@@ -8,4 +8,6 @@ public class Todo
     public required string Description { get; set; }
 
     public required bool IsDone { get; set; }
+    public required Guid UserId { get; set; }
+
 }
