@@ -1,8 +1,11 @@
 @{
     ViewData["Title"] = "Signup";
+
 }
 
+
 @model taskify.Models.SignupViewModel
+
 
 <section class="w-screen h-screen flex items-center justify-center">
 
@@ -11,6 +14,13 @@
       <h1 class="text-3xl font-bold">Signup </h1>
       <span>Create your taskify account</span>
         <br/>
+        <br/>
+        
+        @if (Model != null && !string.IsNullOrEmpty(Model.Message))
+        {
+            <partial name="_MessageBanner" model="Tuple.Create(Model.Message, Model.State)" />
+        }
+        
         <div class="my-4">
             <label asp-for="Fullname" class="block my-2">Fullname</label>
             <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="text"  asp-for="Fullname" placeholder="Enter your full name"/>

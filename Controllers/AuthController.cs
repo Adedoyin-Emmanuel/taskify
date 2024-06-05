@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using taskify.Models;
 
 
-
 namespace taskify.Controllers
 {
 
@@ -13,6 +12,7 @@ namespace taskify.Controllers
         private readonly ILogger<AuthController> _logger = logger;
         private readonly UserManager<User> _userManager = userManager;
         private readonly SignInManager<User> _signInManager = signInManager;
+
 
         [HttpGet]
         public IActionResult Index()
@@ -33,11 +33,18 @@ namespace taskify.Controllers
         {
             if (!ModelState.IsValid)
             {
+                model.Message = "There was an error with your login.";
+                model.State = "error";
+
                 return View("Login", model);
             }
 
+
+            model.Message = "Login successful";
+            model.State = "success";
+
             Console.WriteLine($"{model.Email}, {model.Password}");
-            return View("Login");
+            return View("Login", model);
 
         }
 
@@ -52,18 +59,26 @@ namespace taskify.Controllers
         [HttpPost]
         public IActionResult Signup(SignupViewModel model)
         {
+            model.Message = "Signup successful.";
+            model.State = "success";
 
-            Console.WriteLine(model);
 
             if (!ModelState.IsValid)
             {
+
+                model.Message = "There was an error with your signup.";
+                model.State = "error";
+
                 return View("Signup", model);
             }
 
 
+
+
+
             Console.WriteLine($"{model.Fullname}, {model.Email}, {model.Password}");
 
-            return View("Signup");
+            return View("Signup", model);
         }
 
 

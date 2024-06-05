@@ -1,5 +1,6 @@
 @{
     ViewData["Title"] = "Login";
+   
 }
 
 
@@ -13,6 +14,15 @@
       <h1 class="text-3xl font-bold">Login </h1>
       <span>Login to your taskify account</span>
         <br/>
+        <br/>
+
+           
+        @if (Model != null && !string.IsNullOrEmpty(Model.Message))
+        {
+            <partial name="_MessageBanner" model="Tuple.Create(Model.Message, Model.State)" />
+        }
+        
+
         <div class="my-4">
             <label asp-for="Email" class="block my-2">Email</label>
             <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="email" asp-for="Email" placeholder="Enter your email address"/>
