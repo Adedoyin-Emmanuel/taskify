@@ -25,10 +25,14 @@ namespace taskify.Controllers
 
 
 
-
+        [HttpGet]
+        public IActionResult New()
+        {
+            return View("New");
+        }
 
         [HttpPost]
-        public async Task<IActionResult> New()
+        public async Task<IActionResult> New(TodoViewModel model)
         {
             return View("New");
         }
