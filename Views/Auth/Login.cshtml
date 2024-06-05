@@ -26,9 +26,19 @@
             <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="password" asp-for="Password" placeholder="Shhh 🤫 it's a secret"/>
             <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
        </div>
+       
+        <div class="my-5">
+            <label class="label cursor-pointer" asp-for="RememberMe">
+                <span class="label-text">Remember me</span> 
+                <input type="checkbox" class="checkbox" asp-for="RememberMe" />
+            </label>
+        </div>
+
         <div class="my-5">
             <button class="btn bg-[#181717] hover:bg-black text-white w-full h-[3.7rem]">Login</button>
         </div>
+
+       
 
 
         <div>

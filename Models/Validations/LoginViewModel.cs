@@ -17,5 +17,9 @@ namespace taskify.Models
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Please enter your password")]
         public required string Password { get; set; }
+
+
+        
+        public required bool RememberMe { get; set; }
     }
 }

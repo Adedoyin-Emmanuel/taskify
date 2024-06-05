@@ -29,7 +29,7 @@ namespace taskify.Controllers
 
 
         [HttpPost]
-        public async  Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -42,6 +42,9 @@ namespace taskify.Controllers
 
             model.Message = "Login successful";
             model.State = "success";
+
+
+            Console.WriteLine($"{model.Email} {model.Password} {model.RememberMe}");
 
 
             return View("Login", model);
@@ -81,13 +84,19 @@ namespace taskify.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
 
+                model.State = "error";
+                model.Message = "There was an error with your signup.";
 
+                return View("Signup", model);
+            }
 
-
-            Console.WriteLine($"{model.Fullname}, {model.Email}, {model.Password}");
-
-            return View("Signup", model);
         }
 
 
