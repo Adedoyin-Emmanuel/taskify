@@ -7,12 +7,13 @@ using Microsoft.AspNetCore.Authorization;
 namespace taskify.Controllers
 {
 
-    public class TodoController(ILogger<TodoController> logger, UserManager<User> userManager, SignInManager<User> signInManager) : Controller
+    public class TodoController(ILogger<TodoController> logger, UserManager<User> userManager, SignInManager<User> signInManager, AppContext context) : Controller
     {
 
         private readonly ILogger<TodoController> _logger = logger;
         private readonly UserManager<User> _userManager = userManager;
         private readonly SignInManager<User> _signInManager = signInManager;
+        private readonly AppContext _context = context;
 
 
 
@@ -32,8 +33,10 @@ namespace taskify.Controllers
         }
 
         [HttpPost]
+        
         public async Task<IActionResult> New(TodoViewModel model)
         {
+
             return View("New");
         }
 

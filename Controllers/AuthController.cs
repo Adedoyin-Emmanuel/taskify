@@ -111,5 +111,18 @@ namespace taskify.Controllers
         }
 
 
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+
+            TempData["Message"] = "Logout successful";
+            TempData["State"] = "success";
+
+            return RedirectToAction("Index", "Auth");
+        }
+
+
     }
 }
