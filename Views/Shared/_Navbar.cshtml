@@ -25,21 +25,20 @@
                             </div>
                         </div>
 
-                        <ul tabindex="0" class="dropdown-content z-[1000000] menu p-2 shadow  rounded-box w-52 bg-zinc-100">
+                        <form method="POST" tabindex="0" class="dropdown-content z-[1000000] menu p-2 shadow  rounded-box w-52 bg-zinc-100">
                             <li>
-                                <a href="/todo" class="">My Todos</a>
+                                <a href="/todo">My Todos</a>
                             </li>
                             <li>
-                                <a href="/me" class="">My Profile</a>
+                                <a href="/me">My Profile</a>
                             </li>
                             <li>
-                                <a href="/todo/new" class="">Add New Todo</a>
+                                <a href="/todo/new">Add New Todo</a>
                             </li>
-
                             <li>
-                                <a href="/auth/logout" class="">Logout</a>
+                                <button asp-controller="Auth" asp-action="Logout">Logout</button>
                             </li>
-                        </ul>
+                        </form>
                     </div>
                 }
                 else
