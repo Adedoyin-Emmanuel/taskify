@@ -739,6 +739,11 @@ html {
 }
 
 @media (hover:hover) {
+  .checkbox-success:hover {
+    --tw-border-opacity: 1;
+    border-color: var(--fallback-su,oklch(var(--su)/var(--tw-border-opacity)));
+  }
+
   .label a:hover {
     --tw-text-opacity: 1;
     color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
@@ -1437,6 +1442,27 @@ html {
       linear-gradient(0deg, var(--chkbg) 43%, var(--chkfg) 43%, var(--chkfg) 57%, var(--chkbg) 57%);
 }
 
+.checkbox-success {
+  --chkbg: var(--fallback-su,oklch(var(--su)/1));
+  --chkfg: var(--fallback-suc,oklch(var(--suc)/1));
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-su,oklch(var(--su)/var(--tw-border-opacity)));
+}
+
+.checkbox-success:focus-visible {
+  outline-color: var(--fallback-su,oklch(var(--su)/1));
+}
+
+.checkbox-success:checked,
+    .checkbox-success[aria-checked="true"] {
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-su,oklch(var(--su)/var(--tw-border-opacity)));
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-su,oklch(var(--su)/var(--tw-bg-opacity)));
+  --tw-text-opacity: 1;
+  color: var(--fallback-suc,oklch(var(--suc)/var(--tw-text-opacity)));
+}
+
 @keyframes checkmark {
   0% {
     background-position-y: 5px;
@@ -2030,6 +2056,11 @@ html:has(.drawer-toggle:checked) {
   margin-bottom: 0.75rem;
 }
 
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .me-2 {
   margin-inline-end: 0.5rem;
 }
@@ -2330,6 +2361,16 @@ html:has(.drawer-toggle:checked) {
 .border-red-500 {
   --tw-border-opacity: 1;
   border-color: rgb(239 68 68 / var(--tw-border-opacity));
+}
+
+.border-green-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(34 197 94 / var(--tw-border-opacity));
+}
+
+.border-green-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(134 239 172 / var(--tw-border-opacity));
 }
 
 .bg-\[\#181717\] {
