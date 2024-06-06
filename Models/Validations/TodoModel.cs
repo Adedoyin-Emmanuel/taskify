@@ -6,7 +6,7 @@ namespace taskify.Models
 {
 
 
-    public class TodoViewModel : BaseModel
+    public class TodoViewModel
     {
 
 

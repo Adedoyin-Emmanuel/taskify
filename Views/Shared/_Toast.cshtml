@@ -2,13 +2,8 @@
 @{
     string state = "";
     string message = "";
-
-    if (Model != null && !string.IsNullOrEmpty(Model.Message) && !string.IsNullOrEmpty(Model.State))
-    {
-        state = Model.State;
-        message = Model.Message;
-    }
-    else if (TempData.ContainsKey("State") && TempData.ContainsKey("Message"))
+    
+    if (TempData.ContainsKey("State") && TempData.ContainsKey("Message"))
     {
         state = TempData["State"].ToString();
         message = TempData["Message"].ToString();

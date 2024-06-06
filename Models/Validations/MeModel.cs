@@ -6,7 +6,7 @@ namespace taskify.Models
 {
 
 
-    public class MeViewModel : BaseModel
+    public class MeViewModel
     {
 
         [Required(ErrorMessage = "Please enter your username")]

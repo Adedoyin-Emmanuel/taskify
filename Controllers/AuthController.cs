@@ -32,8 +32,8 @@ namespace taskify.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.Message = "There was an error with your login.";
-                model.State = "error";
+                TempData["Message"] = "There was an error with your login.";
+                TempData["State"] = "error";
 
                 return View("Login", model);
             }
@@ -51,8 +51,8 @@ namespace taskify.Controllers
             else
             {
 
-                model.Message = "Login failed";
-                model.State = "error";
+                TempData["Message"] = "Login failed";
+                TempData["State"] = "error";
 
                 return View("Login", model);
             }
@@ -75,8 +75,8 @@ namespace taskify.Controllers
             if (!ModelState.IsValid)
             {
 
-                model.Message = "There was an error with your signup.";
-                model.State = "error";
+                TempData["Message"] = "There was an error with your signup.";
+                TempData["State"] = "error";
 
                 return View("Signup", model);
             }
@@ -88,8 +88,8 @@ namespace taskify.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, isPersistent: true);
-                model.State = "success";
-                model.Message = "Signup successful.";
+                TempData["State"] = "success";
+                TempData["Message"] = "Signup successful.";
 
                 return RedirectToAction("Index", "Home");
             }
@@ -102,8 +102,8 @@ namespace taskify.Controllers
                     lastError = error.Description;
                 }
 
-                model.State = "error";
-                model.Message = lastError.Length > 0 ? lastError : "There was an error with your signup.";
+                TempData["State"] = "error";
+                TempData["Message"] = lastError.Length > 0 ? lastError : "There was an error with your signup.";
 
                 return View("Signup", model);
             }

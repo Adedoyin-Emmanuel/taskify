@@ -6,7 +6,7 @@ namespace taskify.Models
 {
 
 
-    public class LoginViewModel : BaseModel
+    public class LoginViewModel 
     {
 
         [Required(ErrorMessage = "Please enter your email")]

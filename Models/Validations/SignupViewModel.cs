@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace taskify.Models;
 
 
-public class SignupViewModel : BaseModel
+public class SignupViewModel
 {
     [Required(ErrorMessage = "Please enter your fullname")]
     public required string Fullname { get; set; }

@@ -52,8 +52,8 @@ namespace taskify.Controllers
             if (!ModelState.IsValid)
             {
 
-                model.Message = "There was an error with your signup.";
-                model.State = "error";
+                TempData["Message"] = "There was an error with your signup.";
+                TempData["State"] = "error";
 
                 return View("Signup", model);
             }
