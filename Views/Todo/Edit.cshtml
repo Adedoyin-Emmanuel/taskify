@@ -2,4 +2,56 @@
     ViewData["Title"] = "Edit Todo";
 }
 
- <h1 class="text-3xl font-bold">Edit Todo </h1>
+@{
+    ViewData["Title"] = "Create New Todo";
+}
+
+@model taskify.Models.TodoViewModel
+
+
+<partial name="_DeleteIcon"/>
+<section class="w-screen h-screen flex items-center justify-center">
+
+<form action="/todo/new" method="POST" class="w-11/12 md:w-3/4 xl:w-2/4">
+
+      <h1 class="text-3xl font-bold">Edit Todo</h1>
+     <p>Editing <span class="text-stone-900 font-bold">Brush my teeth</span></p>
+
+        <br/>
+        
+        <div class="my-4">
+            <label asp-for="Title" class="block my-2">Title</label>
+            <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="text"  asp-for="Title" placeholder="Enter todo title"/>
+            <span asp-validation-for="Title" class="text-red-500 text-sm"></span>
+        </div>
+
+        
+        <div class="my-4">
+            <label asp-for="Description" class="block my-2">Title</label>
+            <textarea class="textarea border-[1px] border-gray-200 focus:outline-non rounded-md w-full" rows="4" placeholder="Enter todo description" asp-for="Description"></textarea>
+            <span asp-validation-for="Description" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="my-4">
+            <label class="label cursor-pointer" asp-for="IsDone">
+               Completed
+                <input type="checkbox" class="checkbox" asp-for="IsDone" readonly/>
+            </label>
+        </div>
+
+
+
+        <div class="my-5">
+            <button class="btn bg-[#181717] hover:bg-black text-white w-full h-[3.7rem]">Update Todo</button>
+        </div>
+
+
+</form>
+
+ 
+</section>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+}

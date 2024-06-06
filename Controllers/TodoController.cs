@@ -44,8 +44,10 @@ namespace taskify.Controllers
 
         public async Task<IActionResult> Edit(Guid id)
         {
-            return View("Show");
+            return View("Edit");
         }
+
+
 
 
         [HttpPost]

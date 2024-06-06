@@ -2,8 +2,56 @@
     ViewData["Title"] = "My Todos";
 }
 
+<partial name="_AddIcon"/>
+<section class="p-3 grid md:grid-cols-2 gap-10 grid-cols-1">
 
-<section class="p-3">
 
-     <h1 class="text-2xl font-bold">My Todos</h1>
+    @* Undone Todo *@
+
+    <section class="w-full">
+        <h2 class="text-2xl flex items-center gap-x-2">My Todos
+            <span class="border border-black text-center flex items-center justify-center font-bold h-5 w-5 rounded-full text-[12px]">
+                <span class="text-[12px]">5</span>
+            </span>
+        </h2>
+        
+    <section class="shadow rounded border-[1px] border-black flex  p-3 items-center justify-start gap-4 my-3">
+        <input type="checkbox"  class="checkbox checkbox-md" /> 
+
+        <p>Publish an article on adding notification library in ASP.NET CORE MVC (razor files)</p>
+    </section>
+    </section>
+
+
+
+    @* Done Todo *@
+
+    <section class="w-full">
+         <h2 class="text-2xl flex items-center gap-x-2">Done
+
+    <span class="border border-black text-center flex items-center justify-center font-bold h-5 w-5 rounded-full text-[12px]">
+        <span class="text-[12px]">2</span>
+    </span>
+    </h2>
+
+     <section class="shadow rounded border-[1px] border-black flex  p-3 items-center justify-start gap-4 my-3">
+        <input type="checkbox" checked="checked" class="checkbox checkbox-md" /> 
+
+        <p>Publish an article on adding notification library in ASP.NET CORE MVC (razor files)</p>
+    </section>
+
+
+
+    <section class="shadow rounded border-[1px] border-black flex  p-3 items-center justify-start gap-4 my-3">
+        <input type="checkbox" checked="checked" class="checkbox checkbox-md" /> 
+
+        <p>Publish an article on adding notification library in ASP.NET CORE MVC (razor files)</p>
+    </section>
+
+
+    </section>
+
+
+    
+    </section>
 </section>

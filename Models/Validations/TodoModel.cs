@@ -18,8 +18,6 @@ namespace taskify.Models
 
         public required string Description { get; set; }
 
-        [Required(ErrorMessage = "Please enter todo status")]
-
         public required bool IsDone { get; set; }
 
 
