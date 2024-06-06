@@ -6,10 +6,10 @@ namespace taskify.Models
 {
 
 
-    public class LoginViewModel 
+    public class LoginViewModel
     {
 
-        [Required(ErrorMessage = "Please enter your email")]
+        [Required(ErrorMessage = "Please enter your email"), EmailAddress(ErrorMessage = "Please enter a valid email address")]
         public required string Email { get; set; }
 
 
@@ -19,7 +19,7 @@ namespace taskify.Models
         public required string Password { get; set; }
 
 
-        
+
         public required bool RememberMe { get; set; }
     }
 }

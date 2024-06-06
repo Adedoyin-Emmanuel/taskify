@@ -14,12 +14,13 @@ namespace taskify.Controllers
 
 
 
-    public class MeController(ILogger<MeController> logger, UserManager<User> userManager, SignInManager<User> signInManger) : Controller
+    public class MeController(ILogger<MeController> logger, UserManager<User> userManager, SignInManager<User> signInManger, AppContext context) : Controller
     {
 
         private readonly ILogger<MeController> _logger = logger;
         private readonly UserManager<User> _userManager = userManager;
         private readonly SignInManager<User> _signInManager = signInManger;
+        private readonly AppContext _context = context;
 
 
 
@@ -43,16 +44,58 @@ namespace taskify.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Edit()
         {
-            return View("Edit");
+
+            var userId = _userManager.GetUserId(User);
+            if (userId == null)
+            {
+                await _signInManager.SignOutAsync();
+                return Redirect("/auth/login");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            return View("Edit", user);
         }
 
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Edit(MeViewModel model)
         {
-            return View("Edit");
+            if (!ModelState.IsValid)
+            {
+                TempData["Message"] = "There was an error updating your profile.";
+                TempData["State"] = "error";
+
+                return View("Edit", model);
+            }
+
+            var userId = _userManager.GetUserId(User);
+
+            if (userId is null)
+            {
+                await _signInManager.SignOutAsync();
+                return Redirect("/auth/login");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            user.Fullname = model.Fullname ?? user.Fullname;
+            user.UserName = model.UserName ?? user.UserName;
+            user.PhoneNumber = model.PhoneNumber ?? user.PhoneNumber;
+
+
+            await _context.SaveChangesAsync();
+
+
+            TempData["Message"] = "Profile updated successfully";
+            TempData["State"] = "success";
+
+
+            return RedirectToAction("Index", "Me");
         }
 
     }
