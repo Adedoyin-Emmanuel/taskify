@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using taskify.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace taskify.Controllers
 {
@@ -21,6 +22,18 @@ namespace taskify.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user != null)
+            {
+                var userTodos = await _context.Todo.Where(todo => todo.UserId == user.Id).ToListAsync();
+
+                TempData["Message"] = "Todos fetched successfully.";
+                TempData["State"] = "success";
+
+                return View(userTodos);
+            }
+
             return View();
         }
 
@@ -54,7 +67,7 @@ namespace taskify.Controllers
                 Title = model.Title,
                 Description = model.Description,
                 IsDone = model.IsDone,
-                UserId = userId ?? throw new ArgumentNullException(nameof(userId)),
+                UserId = Guid.Parse(userId ?? throw new ArgumentNullException(nameof(userId))),
             };
 
 
