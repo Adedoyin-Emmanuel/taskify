@@ -3,4 +3,38 @@
 }
 
 
- <h1 class="text-3xl font-bold">My Profile</h1>
+@model taskify.Models.User
+
+
+<section>
+
+
+ <div class="flex justify-center items-center bg-gray-100">
+        <div class="card w-full bg-white ">
+            <div class="card-body">
+                <div class="flex justify-center">
+                    <div class="avatar">
+                        <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                <img src="https://api.dicebear.com/7.x/micah/svg?seed=@User?.Identity?.Name" alt="Avatar" class="object-cover w-full h-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <h2 class="text-2xl font-bold">@Model.Fullname</h2>
+                    <p class="text-gray-600">@Model.Email</p>
+
+
+
+                <div class="mt-6">
+                    <form action="/" method="" class="w-full">
+                        <button class="btn bg-[#181717] hover:bg-black text-white h-[3.7rem]" asp-action="Edit" asp-controller="Me">Edit Profile</button>
+                        <button class="btn bg-[#181717] hover:bg-black text-white h-[3.7rem]" asp-action="Index" asp-controller="Todo">My Todos</button>
+                        <button class="btn bg-[#181717] hover:bg-black text-white h-[3.7rem]" asp-action="Logout" asp-controller="Auth">Logout</button>
+                    </form>
+                </div>
+            </div>
+               
+            </div>
+        </div>
+    </div>
+</section>

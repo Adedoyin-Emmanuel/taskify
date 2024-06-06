@@ -85,6 +85,7 @@ namespace taskify.Controllers
             var user = new User { UserName = model.Email, Email = model.Email, Fullname = model.Fullname, };
             var result = await _userManager.CreateAsync(user, model.Password);
 
+
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, isPersistent: true);

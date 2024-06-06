@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using taskify.Models;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 
 
@@ -24,9 +25,19 @@ namespace taskify.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Index()
         {
-            return View();
+            var userId = _userManager.GetUserId(User);
+            if (userId == null)
+            {
+                await _signInManager.SignOutAsync();
+                return Redirect("/auth/login");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            return View(user);
         }
 
 
