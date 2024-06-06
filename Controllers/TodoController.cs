@@ -33,11 +33,51 @@ namespace taskify.Controllers
         }
 
         [HttpPost]
-        
+
         public async Task<IActionResult> New(TodoViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
 
-            return View("New");
+                model.Message = "There was an error with your signup.";
+                model.State = "error";
+
+                return View("Signup", model);
+            }
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user != null ? await _userManager.GetUserIdAsync(user) : null;
+
+
+
+            var todo = new Todo
+            {
+                Title = model.Title,
+                Description = model.Description,
+                IsDone = model.IsDone,
+                UserId = userId ?? throw new ArgumentNullException(nameof(userId)),
+            };
+
+
+            var result = await _context.Todo.AddAsync(todo);
+
+            if (result != null)
+            {
+                int saveResult = await _context.SaveChangesAsync();
+
+                if (saveResult > 0)
+                {
+                    TempData["Message"] = "Todo created successfully.";
+                    TempData["State"] = "success";
+                    return RedirectToAction("Index", "Todo");
+                }
+            }
+
+
+            TempData["Message"] = "An error occured while saving todo";
+            TempData["State"] = "error";
+
+            return View(todo);
+
         }
 
 
