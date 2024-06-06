@@ -21,20 +21,23 @@
                     <div class="dropdown dropdown-bottom dropdown-end ">
                         <div tabindex="0" class="avatar cursor-pointer dropdown-toggle">
                             <div class="w-10 h-10 rounded-full overflow-hidden">
-                                <img src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft" alt="Avatar" class="object-cover w-full h-full">
+                                <img src="https://api.dicebear.com/7.x/micah/svg?seed=@User.Identity.Name" alt="Avatar" class="object-cover w-full h-full">
                             </div>
                         </div>
 
                         <ul tabindex="0" class="dropdown-content z-[1000000] menu p-2 shadow  rounded-box w-52 bg-zinc-100">
                             <li>
-                                <a href="#" class="">My Profile</a>
+                                <a href="/todo" class="">My Todos</a>
                             </li>
                             <li>
-                                <a href="#" class="">Add New Todo</a>
+                                <a href="/me" class="">My Profile</a>
+                            </li>
+                            <li>
+                                <a href="/todo/new" class="">Add New Todo</a>
                             </li>
 
                             <li>
-                                <a href="#" class="">Logout</a>
+                                <a href="/auth/logout" class="">Logout</a>
                             </li>
                         </ul>
                     </div>

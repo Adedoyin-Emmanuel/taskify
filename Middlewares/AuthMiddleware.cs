@@ -11,7 +11,6 @@ namespace taskify.Middlewares
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
 
-
             if (context.User.Identity.IsAuthenticated &&
                 (context.Request.Path.Equals("/Auth/Login") || context.Request.Path.Equals("/Auth/Signup")))
             {
