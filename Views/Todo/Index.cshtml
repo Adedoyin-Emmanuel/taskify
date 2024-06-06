@@ -2,6 +2,17 @@
     ViewData["Title"] = "My Todos";
 }
 
+@model List<taskify.Models.Todo>
+
+
+@{
+    var allTodos = Model;
+
+    var doneTodoLength = allTodos.Where(todo => todo.IsDone).Count();
+    var undoneTodoLength = allTodos.Where(todo =>!todo.IsDone).Count();
+
+}
+
 <partial name="_AddIcon"/>
 <section class="p-3 grid md:grid-cols-2 gap-10 grid-cols-1">
 
@@ -11,15 +22,30 @@
     <section class="w-full">
         <h2 class="text-2xl flex items-center gap-x-2">My Todos
             <span class="border border-black text-center flex items-center justify-center font-bold h-5 w-5 rounded-full text-[12px]">
-                <span class="text-[12px]">5</span>
+                <span class="text-[12px]">@undoneTodoLength</span>
             </span>
         </h2>
-        
-    <section class="shadow rounded border-[1px] border-black flex  p-3 items-center justify-start gap-4 my-3">
-        <input type="checkbox"  class="checkbox checkbox-md" /> 
 
-        <p>Publish an article on adding notification library in ASP.NET CORE MVC (razor files)</p>
-    </section>
+    @foreach(var todo in allTodos){
+        if(!todo.IsDone){
+            <partial name="_Todo" model="@todo"/>
+        }
+    }
+
+
+     @if(undoneTodoLength == 0){
+        <div>
+
+            <p class="text-gray-800 my-4">You have no todos 🚀</p>
+
+            <div class="my-5">
+                <a class="btn bg-[#181717] hover:bg-black text-white w-full md:w-1/4 h-[3.7rem]" asp-action="New" asp-controller="Todo">Create Todo</a>
+            </div>
+
+
+        </div>
+     }
+
     </section>
 
 
@@ -30,28 +56,16 @@
          <h2 class="text-2xl flex items-center gap-x-2">Done
 
     <span class="border border-black text-center flex items-center justify-center font-bold h-5 w-5 rounded-full text-[12px]">
-        <span class="text-[12px]">2</span>
+        <span class="text-[12px]">@doneTodoLength</span>
     </span>
     </h2>
 
-     <a role="button" class="shadow rounded border-[1px] border-black flex  p-3 items-center justify-start gap-4 my-3 cursor-pointer">
-        <input type="checkbox" checked="checked" class="checkbox checkbox-md" /> 
 
-       
-        <div>
-            <h1 class="font-bold my-1">Publish Article</h1>
-
-            <p>Publish an article on adding notification library in ASP.NET CORE MVC (razor files)</p>
-        </div>
-    </a>
-
-
-
-    <section class="shadow rounded border-[1px] border-black flex  p-3 items-center justify-start gap-4 my-3">
-        <input type="checkbox" checked="checked" class="checkbox checkbox-md" /> 
-
-        <p>Publish an article on adding notification library in ASP.NET CORE MVC (razor files)</p>
-    </section>
+      @foreach(var todo in allTodos){
+        if(todo.IsDone){
+            <partial name="_Todo" model="@todo"/>
+        }
+     }
 
 
     </section>

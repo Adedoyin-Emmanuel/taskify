@@ -2,48 +2,52 @@
     ViewData["Title"] = "Edit Todo";
 }
 
-@{
-    ViewData["Title"] = "Create New Todo";
-}
-
-@model taskify.Models.TodoViewModel
+@model taskify.Models.Todo
 
 
-<partial name="_DeleteIcon"/>
+
+
+
 <section class="w-screen h-screen flex items-center justify-center">
 
-<form action="/todo/new" method="POST" class="w-11/12 md:w-3/4 xl:w-2/4">
+<form action="/todo/edit" method="POST" class="w-11/12 md:w-3/4 xl:w-2/4">
 
-      <h1 class="text-3xl font-bold">Edit Todo</h1>
-     <p>Editing <span class="text-stone-900 font-bold">Brush my teeth</span></p>
+    <h1 class="text-3xl font-bold">Edit Todo</h1>
+     <p>Editing <span class="text-gray-500 font-bold">@Model.Title</span></p>
 
         <br/>
+         <div class="my-4 hidden">
+            <label asp-for="Id" class="block my-2">Id</label>
+            <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="text"  asp-for="Id" placeholder="Todo id" value="@Model.Id" readonly hidden/>
+            <span asp-validation-for="Id" class="text-red-500 text-sm"></span>
+        </div>
         
         <div class="my-4">
             <label asp-for="Title" class="block my-2">Title</label>
-            <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="text"  asp-for="Title" placeholder="Enter todo title"/>
+            <input class="input border-[1px] border-gray-200 focus:outline-none rounded-md w-full h-[3.7rem]" type="text"  asp-for="Title" placeholder="Enter todo title" value="@Model.Title"/>
             <span asp-validation-for="Title" class="text-red-500 text-sm"></span>
         </div>
 
         
         <div class="my-4">
-            <label asp-for="Description" class="block my-2">Title</label>
-            <textarea class="textarea border-[1px] border-gray-200 focus:outline-non rounded-md w-full" rows="4" placeholder="Enter todo description" asp-for="Description"></textarea>
+            <label asp-for="Description" class="block my-2">Description</label>
+            <textarea class="textarea border-[1px] border-gray-200 focus:outline-none rounded-md w-full" rows="4" placeholder="Enter todo description" asp-for="Description">@Model.Description</textarea>
             <span asp-validation-for="Description" class="text-red-500 text-sm"></span>
         </div>
 
         <div class="my-4">
             <label class="label cursor-pointer" asp-for="IsDone">
                Completed
-                <input type="checkbox" class="checkbox" asp-for="IsDone" readonly/>
+                <input type="checkbox" class="checkbox" asp-for="IsDone" checked="@Model.IsDone"/>
             </label>
         </div>
-
-
 
         <div class="my-5">
             <button class="btn bg-[#181717] hover:bg-black text-white w-full h-[3.7rem]">Update Todo</button>
         </div>
+
+
+<partial name="_DeleteIcon" model="@Model"/>
 
 
 </form>

@@ -1,10 +1,19 @@
 @model taskify.Models.Todo
 
- <a class="shadow rounded border-[1px] border-black flex  p-3 items-center justify-start gap-4 my-3 cursor-pointer" asp-controller="Todo" asp-action="Edit" asp-route-itemid="@Model.Id">
-        <input type="checkbox" checked="@Model.IsDone" class="checkbox checkbox-md" />        
+<form method="POST" action="/todo/edit/@Model.Id" id="todo-form-@Model.Id">
+    <a class="shadow rounded border-[1px] border-black flex  p-3 items-center justify-start gap-4 my-3 cursor-pointer" asp-controller="Todo" asp-action="Edit" asp-route-id="@Model.Id">
+        <input type="checkbox" checked="@Model.IsDone" asp-for="IsDone" class="checkbox checkbox-md" onclick="updateStatus('@Model.Id')" />        
         <div>
             <h1 class="font-bold my-1">@Model.Title</h1>
 
             <p>@Model.Description</p>
         </div>
-</a>
+    </a>
+</form>
+
+
+<script>
+    function updateStatus(id) {
+        document.getElementById(`todo-form-${id}`).submit();
+    }
+</script>

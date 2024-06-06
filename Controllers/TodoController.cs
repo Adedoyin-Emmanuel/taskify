@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
+
+
 namespace taskify.Controllers
 {
 
@@ -28,10 +30,9 @@ namespace taskify.Controllers
             {
                 var userTodos = await _context.Todo.Where(todo => todo.UserId == user.Id).ToListAsync();
 
-                TempData["Message"] = "Todos fetched successfully.";
-                TempData["State"] = "success";
+                return View("Index", userTodos);
 
-                return View(userTodos);
+
             }
 
             return View();
@@ -40,6 +41,7 @@ namespace taskify.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public IActionResult New()
         {
             return View("New");
@@ -47,15 +49,15 @@ namespace taskify.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> New(TodoViewModel model)
+        public async Task<IActionResult> New(CreateTodoViewModel model)
         {
             if (!ModelState.IsValid)
             {
 
-                TempData["Message"] = "There was an error with your signup.";
+                TempData["Message"] = "There was an error creating your todo.";
                 TempData["State"] = "error";
 
-                return View("Signup", model);
+                return View("Todo", model);
             }
             var user = await _userManager.GetUserAsync(User);
             var userId = user != null ? await _userManager.GetUserIdAsync(user) : null;
@@ -100,23 +102,60 @@ namespace taskify.Controllers
 
         public async Task<IActionResult> Edit(Guid id)
         {
-            return View("Edit");
+            var todo = await _context.Todo.FindAsync(id);
+
+            return View("Edit", todo);
         }
-
-
 
 
         [HttpPost]
-        public async Task<IActionResult> Edit(TodoViewModel model)
+        public async Task<IActionResult> Edit(UpdateTodoViewModel model)
         {
-            return View("Edit");
+            if (ModelState.IsValid)
+            {
+                TempData["Message"] = "An error occurred while updating todo";
+                TempData["State"] = "error";
+            }
+
+            var todo = await _context.Todo.FindAsync(model.Id);
+
+            if (todo is not null)
+            {
+                todo.Title = model.Title ?? todo.Title;
+                todo.Description = model.Description ?? todo.Description;
+                todo.IsDone = model.IsDone;
+            }
+
+            await _context.SaveChangesAsync();
+
+            TempData["Message"] = "Todo updated successfully";
+            TempData["State"] = "success";
+
+            return RedirectToAction("Index", "Todo");
         }
 
 
-        [HttpDelete]
+        [HttpPost]
         public async Task<IActionResult> Delete(Guid id)
         {
-            return View("Delete");
+            var todo = await _context.Todo.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
+
+            if (todo is not null)
+            {
+                _context.Todo.Remove(todo);
+                await _context.SaveChangesAsync();
+
+                TempData["Message"] = "Todo deleted successfully";
+                TempData["State"] = "success";
+
+                return RedirectToAction("Index", "Todo");
+
+            }
+
+            TempData["Message"] = "An error occurred while deleting todo";
+            TempData["State"] = "error";
+
+            return RedirectToAction("Edit", "Todo");
         }
 
 
